@@ -62,4 +62,31 @@ class ArrayChallengesTest {
 
         Assertions.assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{5, 6, 7, 1, 2, 3, 4});
     }
+
+    @Test
+    @DisplayName("should not rotate elements if array size is 1")
+    void rotateArray_whenArrayHasSizeOne() {
+        final int[] numbers = {1};
+        final int stepsToRotate = 3;
+
+        Assertions.assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{1});
+    }
+
+    @Test
+    @DisplayName("should rotate elements even when steps to rotate is greater than the array size")
+    void rotateArray_whenThereAreMoreStepsThanElements() {
+        final int[] numbers = {1, 2};
+        final int stepsToRotate = 3;
+
+        Assertions.assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{2, 1});
+    }
+
+    @Test
+    @DisplayName("should not rotate when steps are negative")
+    void rotateArray_whenStepsIsNegative() {
+        final int[] numbers = {1, 2};
+        final int stepsToRotate = 3;
+
+        Assertions.assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{2, 1});
+    }
 }
