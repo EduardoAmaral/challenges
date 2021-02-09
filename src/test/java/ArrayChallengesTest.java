@@ -1,7 +1,9 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
+@Timeout(2)
 class ArrayChallengesTest {
 
     @Test
@@ -88,5 +90,20 @@ class ArrayChallengesTest {
         final int stepsToRotate = 3;
 
         Assertions.assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{2, 1});
+    }
+
+    @Test
+    void isThereAnyElementThatExistsInBothArrays() {
+        final String[] array = new String[]{"A", "C", "Z"};
+        final String[] secondArray = new String[]{"E", "B", "A", "H", "I"};
+
+        Assertions.assertTrue(ArrayChallenges.containsCommonElement(array, secondArray));
+    }
+
+    @Test
+    void reverseString() {
+        String s = "Pop";
+        Assertions.assertEquals(ArrayChallenges.reverse(s), "poP");
+        Assertions.assertEquals(ArrayChallenges.reverse(null), "");
     }
 }

@@ -1,7 +1,10 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.*;
+
+@Slf4j
 public class ArrayChallenges {
     public static int[] twoSum(int[] numbers, int target) {
         Map<Integer, Integer> indexByComplement = new HashMap<>();
@@ -68,5 +71,32 @@ public class ArrayChallenges {
 
     private static void insertRotatedElements(int[] array, int stepsToRotate, int[] aux) {
         System.arraycopy(aux, 0, array, 0, stepsToRotate);
+    }
+
+    public static boolean containsCommonElement(String[] a, String[] b) {
+        final Instant start = Instant.now();
+
+        final Set<String> elements = new HashSet<>(Arrays.asList(a));
+
+        for (String i : b) {
+            if (elements.contains(i)) {
+                log.info("containsCommonElement took {} milliseconds to finish", Duration.between(start, Instant.now()).toMillis());
+                return true;
+            }
+        }
+
+        log.info("containsCommonElement took {} milliseconds to finish", Duration.between(start, Instant.now()).toMillis());
+        return false;
+    }
+
+    public static String reverse(String s) {
+        if (s == null || s.trim().equals("")) return "";
+        final String[] strings = s.split("");
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            builder.append(strings[i]);
+        }
+        return builder.toString();
     }
 }
