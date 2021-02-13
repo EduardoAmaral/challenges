@@ -32,10 +32,30 @@ public class BinarySearchTree {
         }
     }
 
+    public Node lookup(int element) {
+        if (root == null) {
+            return null;
+        }
+
+        return lookup(root, element);
+    }
+
+    private Node lookup(Node node, int element) {
+        if (node == null) return null;
+
+        if (element < node.value) {
+            return lookup(node.left, element);
+        } else if (element > node.value) {
+            return lookup(node.right, element);
+        }
+
+        return node;
+    }
+
     @Getter
     @AllArgsConstructor
     public static class Node {
-        private int value;
+        private final int value;
         private Node left;
         private Node right;
     }
