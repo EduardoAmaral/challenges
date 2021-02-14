@@ -1,7 +1,8 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @Timeout(2)
 class ArrayChallengesTest {
@@ -12,7 +13,7 @@ class ArrayChallengesTest {
         final int[] numbers = {2, 7, 11, 15};
         final int target = 9;
 
-        Assertions.assertArrayEquals(ArrayChallenges.twoSum(numbers, target), new int[]{0, 1});
+        assertArrayEquals(ArrayChallenges.twoSum(numbers, target), new int[]{0, 1});
     }
 
     @Test
@@ -21,7 +22,7 @@ class ArrayChallengesTest {
         final int[] numbers = {2, 7, 11, 15};
         final int target = 16;
 
-        Assertions.assertArrayEquals(ArrayChallenges.twoSum(numbers, target), new int[0]);
+        assertArrayEquals(ArrayChallenges.twoSum(numbers, target), new int[0]);
     }
 
     @Test
@@ -29,7 +30,7 @@ class ArrayChallengesTest {
     void moveZeros() {
         final int[] numbers = {1, 0, 6, 0, 3, 5, 12};
 
-        Assertions.assertArrayEquals(ArrayChallenges.moveZeros(numbers), new int[]{1, 6, 3, 5, 12, 0, 0});
+        assertArrayEquals(ArrayChallenges.moveZeros(numbers), new int[]{1, 6, 3, 5, 12, 0, 0});
     }
 
     @Test
@@ -37,7 +38,7 @@ class ArrayChallengesTest {
     void moveZeros_whenNoZerosAreFound() {
         final int[] numbers = {1, 6, 12};
 
-        Assertions.assertArrayEquals(ArrayChallenges.moveZeros(numbers), new int[]{1, 6, 12});
+        assertArrayEquals(ArrayChallenges.moveZeros(numbers), new int[]{1, 6, 12});
     }
 
     @Test
@@ -45,7 +46,7 @@ class ArrayChallengesTest {
     void containsDuplicate() {
         final int[] numbers = {1, 0, 6, 0, 3, 5, 12};
 
-        Assertions.assertTrue(ArrayChallenges.containsDuplicate(numbers));
+        assertTrue(ArrayChallenges.containsDuplicate(numbers));
     }
 
     @Test
@@ -53,7 +54,7 @@ class ArrayChallengesTest {
     void containsDuplicate_falseScenario() {
         final int[] numbers = {1, 6, 3, 5, 12};
 
-        Assertions.assertFalse(ArrayChallenges.containsDuplicate(numbers));
+        assertFalse(ArrayChallenges.containsDuplicate(numbers));
     }
 
     @Test
@@ -62,7 +63,7 @@ class ArrayChallengesTest {
         final int[] numbers = {1, 2, 3, 4, 5, 6, 7};
         final int stepsToRotate = 3;
 
-        Assertions.assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{5, 6, 7, 1, 2, 3, 4});
+        assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{5, 6, 7, 1, 2, 3, 4});
     }
 
     @Test
@@ -71,7 +72,7 @@ class ArrayChallengesTest {
         final int[] numbers = {1};
         final int stepsToRotate = 3;
 
-        Assertions.assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{1});
+        assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{1});
     }
 
     @Test
@@ -80,7 +81,7 @@ class ArrayChallengesTest {
         final int[] numbers = {1, 2};
         final int stepsToRotate = 3;
 
-        Assertions.assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{2, 1});
+        assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{2, 1});
     }
 
     @Test
@@ -89,21 +90,31 @@ class ArrayChallengesTest {
         final int[] numbers = {1, 2};
         final int stepsToRotate = 3;
 
-        Assertions.assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{2, 1});
+        assertArrayEquals(ArrayChallenges.rotateArray(numbers, stepsToRotate), new int[]{2, 1});
     }
 
     @Test
-    void isThereAnyElementThatExistsInBothArrays() {
+    @DisplayName("should return true if arrays has any element in common")
+    void containsCommonElement() {
         final String[] array = new String[]{"A", "C", "Z"};
         final String[] secondArray = new String[]{"E", "B", "A", "H", "I"};
 
-        Assertions.assertTrue(ArrayChallenges.containsCommonElement(array, secondArray));
+        assertTrue(ArrayChallenges.containsCommonElement(array, secondArray));
+    }
+
+    @Test
+    @DisplayName("should return false if arrays don't have any common element")
+    void containsCommonElement_falseCase() {
+        final String[] array = new String[]{"X", "C", "Z"};
+        final String[] secondArray = new String[]{"E", "B", "A", "H", "I"};
+
+        assertFalse(ArrayChallenges.containsCommonElement(array, secondArray));
     }
 
     @Test
     void reverseString() {
         String s = "Pop";
-        Assertions.assertEquals(ArrayChallenges.reverse(s), "poP");
-        Assertions.assertEquals(ArrayChallenges.reverse(null), "");
+        assertEquals(ArrayChallenges.reverse(s), "poP");
+        assertEquals(ArrayChallenges.reverse(null), "");
     }
 }
