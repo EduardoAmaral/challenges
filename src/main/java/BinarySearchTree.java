@@ -51,6 +51,60 @@ public class BinarySearchTree {
         return node;
     }
 
+    public boolean remove(int element) {
+        if (root == null) return false;
+
+        Node current = root;
+        Node parent = null;
+        while (current != null) {
+            if (element < current.value) {
+                parent = current;
+                current = current.left;
+            } else if (element > current.value) {
+                parent = current;
+                current = current.right;
+            } else {
+                if (current.right == null) {
+                    if (parent == null) {
+                        root = current.left;
+                    } else {
+                        parent.left = current.left;
+                    }
+                } else if (current.left == null) {
+                    if (parent == null) {
+                        root = current.right;
+                    } else {
+                        parent.right = current.right;
+                    }
+                } else {
+                    if (parent == null) {
+                        current.right.left = current.left;
+                        root = current.right;
+                    } else {
+                        Node lowest = current.right;
+                        Node lowestParent = null;
+                        while (lowest.left != null) {
+                            lowestParent = lowest;
+                            lowest = lowest.left;
+                        }
+                        if (lowestParent != null) lowestParent.left = lowest.right;
+                        lowest.left = current.left;
+                        lowest.right = current.right;
+                        if (element < parent.value) {
+                            parent.left = lowest;
+                        } else {
+                            parent.right = lowest;
+                        }
+                    }
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     @Getter
     @AllArgsConstructor
     public static class Node {
