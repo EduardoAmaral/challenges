@@ -9,6 +9,7 @@ public class BinarySearchTree {
     public void insert(int element) {
         if (root == null) {
             root = new Node(element, null, null);
+            return;
         }
 
         insert(root, element);
@@ -21,9 +22,7 @@ public class BinarySearchTree {
             } else {
                 node.left = new Node(element, null, null);
             }
-        }
-
-        if (element > node.value) {
+        } else {
             if (node.getRight() != null) {
                 insert(node.right, element);
             } else {

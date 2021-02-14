@@ -15,6 +15,16 @@ class BinarySearchTreeTest {
     }
 
     @Test
+    @DisplayName("should add duplicated notes on the right")
+    void insertDuplicatedNodes() {
+        final BinarySearchTree tree = new BinarySearchTree();
+        tree.insert(10);
+        tree.insert(10);
+        assertEquals(10, tree.getRoot().getValue());
+        assertEquals(10, tree.getRoot().getRight().getValue());
+    }
+
+    @Test
     @DisplayName("should insert on left if the element is lower than the root value")
     void insertToLeft() {
         final BinarySearchTree tree = new BinarySearchTree();
