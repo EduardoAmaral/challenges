@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class SearchChallenges {
 
-    public List<Integer> transverseWithBreadthFistSearch(BinarySearchTree tree) {
+    public static List<Integer> transverseWithBreadthFistSearch(BinarySearchTree tree) {
         List<Integer> result = new ArrayList<>();
         Queue<BinarySearchTree.Node> queue = new ArrayDeque<>();
         queue.add(tree.getRoot());
@@ -24,4 +24,23 @@ public class SearchChallenges {
 
         return result;
     }
+
+    public static List<Integer> transverseWithDepthFistSearchInOrder(BinarySearchTree tree) {
+        return transverseInOrder(tree.getRoot(), new ArrayList<>());
+    }
+
+    private static List<Integer> transverseInOrder(BinarySearchTree.Node node, List<Integer> list) {
+        if (node.getLeft() != null) {
+            transverseInOrder(node.getLeft(), list);
+        }
+
+        list.add(node.getValue());
+
+        if (node.getRight() != null) {
+            transverseInOrder(node.getRight(), list);
+        }
+
+        return list;
+    }
+
 }
