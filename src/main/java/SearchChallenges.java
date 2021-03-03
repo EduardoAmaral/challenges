@@ -43,4 +43,15 @@ public class SearchChallenges {
         return list;
     }
 
+    private static List<Integer> transversePreOrder(BinarySearchTree.Node node, List<Integer> list) {
+        list.add(node.getValue());
+        if (node.getLeft() != null) transversePreOrder(node.getLeft(), list);
+        if (node.getRight() != null) transversePreOrder(node.getRight(), list);
+        return list;
+    }
+
+    public static List<Integer> transverseWithDepthFistSearchPreOrder(BinarySearchTree tree) {
+        return transversePreOrder(tree.getRoot(), new ArrayList<>());
+    }
+
 }

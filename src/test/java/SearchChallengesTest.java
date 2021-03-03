@@ -41,4 +41,22 @@ class SearchChallengesTest {
 
         Assertions.assertArrayEquals(expected, result.toArray());
     }
+
+    @Test
+    @DisplayName("given a ordered tree, should return the list of elements using DFS pre order algorithm - parent left right order")
+    void transversePreOrderWithDFS() {
+        final BinarySearchTree tree = new BinarySearchTree();
+        tree.insert(9);
+        tree.insert(4);
+        tree.insert(20);
+        tree.insert(1);
+        tree.insert(6);
+        tree.insert(15);
+        tree.insert(170);
+        final Integer[] expected = new Integer[]{9, 4, 1, 6, 20, 15, 170};
+
+        final List<Integer> result = SearchChallenges.transverseWithDepthFistSearchPreOrder(tree);
+
+        Assertions.assertArrayEquals(expected, result.toArray());
+    }
 }
