@@ -30,17 +30,14 @@ public class SearchChallenges {
     }
 
     private static List<Integer> transverseInOrder(BinarySearchTree.Node node, List<Integer> list) {
-        if (node.getLeft() != null) {
-            transverseInOrder(node.getLeft(), list);
-        }
-
+        if (node.getLeft() != null) transverseInOrder(node.getLeft(), list);
         list.add(node.getValue());
-
-        if (node.getRight() != null) {
-            transverseInOrder(node.getRight(), list);
-        }
-
+        if (node.getRight() != null) transverseInOrder(node.getRight(), list);
         return list;
+    }
+
+    public static List<Integer> transverseWithDepthFistSearchPreOrder(BinarySearchTree tree) {
+        return transversePreOrder(tree.getRoot(), new ArrayList<>());
     }
 
     private static List<Integer> transversePreOrder(BinarySearchTree.Node node, List<Integer> list) {
@@ -50,8 +47,14 @@ public class SearchChallenges {
         return list;
     }
 
-    public static List<Integer> transverseWithDepthFistSearchPreOrder(BinarySearchTree tree) {
-        return transversePreOrder(tree.getRoot(), new ArrayList<>());
+    public static List<Integer> transverseWithDepthFistSearchPostOrder(BinarySearchTree tree) {
+        return transversePostOrder(tree.getRoot(), new ArrayList<>());
     }
 
+    private static List<Integer> transversePostOrder(BinarySearchTree.Node node, List<Integer> list) {
+        if (node.getLeft() != null) transversePostOrder(node.getLeft(), list);
+        if (node.getRight() != null) transversePostOrder(node.getRight(), list);
+        list.add(node.getValue());
+        return list;
+    }
 }
